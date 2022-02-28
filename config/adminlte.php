@@ -242,6 +242,12 @@ return [
             'icon'        => 'fas fa-fw fa-city',
             'active'      => ['admin/city*']
         ],
+        [
+            'text'        => 'Lineas',
+            'route'       => 'admin.line.index',
+            'icon'        => 'fas fa-fw fa-route',
+            'active'      => ['admin/line*']
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

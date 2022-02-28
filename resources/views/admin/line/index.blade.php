@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Ciudades')
+@section('title', 'Lineas')
 
 @section('content_header')
-    <h1 class="p-4 shadow-lg rounded-pill bg-white text-center">Ciudades</h1>
+    <h1 class="p-4 shadow-lg rounded-pill bg-white text-center">Lineas</h1>
 @stop
 
 @section('content')
@@ -24,31 +24,33 @@
 @endif
 <section class="card">
   <header class="card-header text-center">
-    <a href="{{ route('admin.city.create') }}" class="btn btn-outline-primary">
+    <a href="{{ route('admin.line.create') }}" class="btn btn-outline-primary">
       Registrar <i class="fas fa-plus"></i> 
     </a>
   </header>
   <article class="card-body">
-    <table id='table' class="table">
+    <table id='cityTable' class="table">
       <thead>
         <tr>
           <th>Num.</th>
           <th>Nombre</th>
           <th>Codigo</th>
+          <th>Ciudad</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($cities as $city)
+        @foreach($lines as $line)
         <tr>
-          <td>{{ $city->id }}</td>
-          <td>{{ $city->name }}</td>
-          <td>{{ $city->code }}</td>
+          <td>{{ $line->id }}</td>
+          <td>{{ $line->name }}</td>
+          <td>{{ $line->code }}</td>
+          <td>{{ $line->city->code }}</td>
           <td>
-            <a href="{{ route('admin.city.edit', $city) }}" class="btn btn-outline-success">
+            <a href="{{ route('admin.line.edit', $line) }}" class="btn btn-outline-success">
               <i class="fas fa-edit"></i>
             </a>
-            <form action="{{ route('admin.city.destroy', $city) }}" method="POST">
+            <form action="{{ route('admin.line.destroy', $line) }}" method="POST">
               @method('DELETE')
               @csrf
               <button class="btn btn-outline-danger">
@@ -67,7 +69,7 @@
 @section('js')
   <script> 
     $(document).ready(()=>{
-      $('#table').DataTable({
+      $('#cityTable').DataTable({
         responsive: true
       });
     });
