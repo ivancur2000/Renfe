@@ -248,6 +248,12 @@ return [
             'icon'        => 'fas fa-fw fa-route',
             'active'      => ['admin/line*']
         ],
+        [
+            'text'        => 'Estaciones',
+            'route'       => 'admin.station.index',
+            'icon'        => 'fas fa-fw fa-train',
+            'active'      => ['admin/station*']
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
