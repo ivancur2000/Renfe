@@ -7,6 +7,21 @@
 @stop
 
 @section('content')
+@if(session('register') == 'OK')
+<section class="alert alert-success">
+  Dato registrado con exito
+</section>
+@endif
+@if(session('edit') == 'OK')
+<section class="alert alert-success">
+  Dato actualizado con exito
+</section>
+@if(session('delete') == 'OK')
+<section class="alert alert-success">
+  Dato eliminado con exito
+</section>
+@endif
+@endif
 <section class="card">
   <header class="card-header text-center">
     <a href="{{ route('admin.city.create') }}" class="btn btn-outline-primary">
@@ -30,12 +45,16 @@
           <td>{{ $city['name'] }}</td>
           <td>{{ $city['code'] }}</td>
           <td>
-            <button class="btn btn-outline-success">
+            <a href="{{ route('admin.city.edit', $city) }}" class="btn btn-outline-success">
               <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn btn-outline-danger">
-              <i class="fas fa-trash"></i>
-            </button>
+            </a>
+            <form action="{{ route('admin.city.destroy', $city) }}" method="POST">
+              @method('DELETE')
+              @csrf
+              <button class="btn btn-outline-danger">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
           </td>
         </tr>
         @endforeach

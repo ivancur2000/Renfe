@@ -9,6 +9,11 @@ class City extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'name',
+      'code'
+    ];
+
     public function lines (){
       return $this->hasMany(Line::class);
     }

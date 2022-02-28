@@ -37,7 +37,14 @@ class CityControler extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $request->validate([
+        'name' => 'required|unique:cities|max:150',
+        'code' => 'required'
+      ]);
+
+      City::create($request->all());
+
+      return redirect()->route('admin.city.index')->with('register', 'OK');
     }
 
     /**
@@ -57,9 +64,9 @@ class CityControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(City $city)
     {
-        //
+        return view('admin.city.edit', compact('city'));
     }
 
     /**
@@ -69,9 +76,15 @@ class CityControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, City $city)
     {
-        //
+      $request->validate([
+        'name' => 'required|max:150',
+        'code' => 'required'
+      ]);
+
+      $city->update($request->all());
+      return redirect()->route('admin.city.index')->with('edit', 'OK');
     }
 
     /**
@@ -80,8 +93,10 @@ class CityControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(City $city)
     {
-        //
+      $city->delete();
+
+      return redirect()->route('admin.city.index')->with('delete', 'OK');
     }
 }
