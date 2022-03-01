@@ -243,10 +243,18 @@ return [
             'active'      => ['admin/city*']
         ],
         [
+
             'text'        => 'Lineas',
             'route'       => 'admin.line.index',
             'icon'        => 'fas fa-fw fa-route',
             'active'      => ['admin/line*']
+        ],
+        [
+            'text'        => 'Preferencias',
+            'route'       => 'admin.preference.index',
+            'icon'        => 'fas fa-fw fa-check',
+            'active'      => ['admin/preference*']
+
         ],
         ['header' => 'account_settings'],
         [

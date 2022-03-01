@@ -1,0 +1,54 @@
+@extends('adminlte::page')
+
+@section('title', 'Preferencias')
+
+@section('content_header')
+    <h1 class="p-4 shadow-lg rounded-pill bg-white text-center">Preferencias</h1>
+@stop
+
+@section('content')
+<section class="card">
+  <header class="card-header text-center">
+    <a href="{{ route('admin.preference.index') }}" class="btn btn-outline-danger">
+      Volver <i class="fas fa-arrow-left"></i>
+    </a>
+  </header>
+  <article class="card-body">
+
+    <x-jet-validation-errors class="mb-3 rounded-0" />
+
+    <form method="POST" action="{{ route('admin.preference.update', $preference) }}" novalidate>
+        @csrf
+        @method('PUT')
+        <div class="mb-3">
+            <x-jet-label value="Nombre de la Preferencia" />
+
+            <x-jet-input class="{{ $errors->has('name') ? 'is-invalid' : '' }}" type="text"
+                         name="name" value="{{ $preference->name }}" required />
+            <x-jet-input-error for="name"></x-jet-input-error>
+        </div>
+
+        <div class="mb-3">
+            <x-jet-label value="Codigo" />
+
+            <x-jet-input class="form-control{{ $errors->has('code') ? ' is-invalid' : '' }}" type="text"
+                         name="code" value="{{ $preference->code }}" required />
+            <x-jet-input-error for="code"></x-jet-input-error>
+        </div>
+
+        <div class="mb-0">
+            <div class="d-flex justify-content-end align-items-baseline">
+                <x-jet-button>
+                    Actualizar
+                </x-jet-button>
+            </div>
+        </div>
+    </form>
+
+  </article>
+</section>
+@stop
+
+@section('js')
+  <script> </script>
+@stop

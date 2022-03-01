@@ -14,12 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('preference_route', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('preference_id');
-            $table->unsignedBigInteger('route_id');
+            // $table->id();
+            // $table->unsignedBigInteger('preference_id');
+            // $table->unsignedBigInteger('route_id');
 
-            $table->foreign('preference_id')->references('id')->on('preferences')->onDelete('cascade');
-            $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
+            // $table->foreign('preference_id')->references('id')->on('preferences')->onDelete('cascade');
+            // $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
+            // $table->timestamps();
+
+            $table->id();
+            $table->string('name');
+            $table->string('code');
             $table->timestamps();
         });
     }
