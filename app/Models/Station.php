@@ -9,11 +9,20 @@ class Station extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'name',
+      'code',
+      'address',
+      'price',
+      'schedule',
+      'line_id'
+    ];
+
     public function routes (){
-      $this->belongsToMany(Route::class);
+      return $this->belongsToMany(Route::class);
     }
 
-    public function lines (){
-      $this->belongsTo(Line::class);
+    public function line (){
+      return $this->belongsTo(Line::class);
     }
 }

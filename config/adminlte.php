@@ -237,13 +237,18 @@ return [
             'icon'        => 'fas fa-fw fa-home',
         ],
         [
+            'text'        => 'Usuarios',
+            'route'       => 'admin.user.index',
+            'icon'        => 'fas fa-fw fa-user',
+            'active'      => ['admin/user*']
+        ],
+        [
             'text'        => 'Ciudades',
             'route'       => 'admin.city.index',
             'icon'        => 'fas fa-fw fa-city',
             'active'      => ['admin/city*']
         ],
         [
-
             'text'        => 'Lineas',
             'route'       => 'admin.line.index',
             'icon'        => 'fas fa-fw fa-route',
@@ -256,11 +261,11 @@ return [
             'active'      => ['admin/preference*']
 
         ],
-        ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text'        => 'Estaciones',
+            'route'       => 'admin.station.index',
+            'icon'        => 'fas fa-fw fa-train',
+            'active'      => ['admin/station*']
         ],
         [
             'text' => 'change_password',

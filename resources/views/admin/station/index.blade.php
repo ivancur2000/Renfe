@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Lineas')
+@section('title', 'Estaciones')
 
 @section('content_header')
-    <h1 class="p-4 shadow-lg rounded-pill bg-white text-center">Lineas</h1>
+    <h1 class="p-4 shadow-lg rounded-pill bg-white text-center">Estaciones</h1>
 @stop
 
 @section('content')
@@ -24,33 +24,41 @@
 @endif
 <section class="card">
   <header class="card-header text-center">
-    <a href="{{ route('admin.line.create') }}" class="btn btn-outline-primary">
+    <a href="{{ route('admin.station.create') }}" class="btn btn-outline-primary">
       Registrar <i class="fas fa-plus"></i> 
     </a>
   </header>
   <article class="card-body">
-    <table id='cityTable' class="table">
+    <table id='table' class="table">
       <thead>
         <tr>
           <th>Num.</th>
           <th>Nombre</th>
           <th>Codigo</th>
+          <th>Direccion</th>
           <th>Ciudad</th>
+          <th>Linea</th>
+          <th>Precio</th>
+          <th>Horario</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($lines as $line)
+        @foreach($stations as $station)
         <tr>
-          <td>{{ $line->id }}</td>
-          <td>{{ $line->name }}</td>
-          <td>{{ $line->code }}</td>
-          <td>{{ $line->city->code }}</td>
+          <td>{{ $station->id }}</td>
+          <td>{{ $station->name }}</td>
+          <td>{{ $station->code }}</td>
+          <td>{{ $station->address }}</td>
+          <td>{{ $station->line->city->name }}</td>
+          <td>{{ $station->line->name }}</td>
+          <td>{{ $station->price }} Bs</td>
+          <td>{{ $station->schedule }}</td>
           <td>
-            <a href="{{ route('admin.line.edit', $line) }}" class="btn btn-outline-success">
+            <a href="{{ route('admin.station.edit', $station) }}" class="btn btn-outline-success">
               <i class="fas fa-edit"></i>
             </a>
-            <form action="{{ route('admin.line.destroy', $line) }}" method="POST">
+            <form action="{{ route('admin.station.destroy', $station) }}" method="POST">
               @method('DELETE')
               @csrf
               <button class="btn btn-outline-danger">
@@ -69,7 +77,7 @@
 @section('js')
   <script> 
     $(document).ready(()=>{
-      $('#cityTable').DataTable({
+      $('#table').DataTable({
         responsive: true
       });
     });
