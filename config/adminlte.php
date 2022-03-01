@@ -255,6 +255,13 @@ return [
             'active'      => ['admin/line*']
         ],
         [
+            'text'        => 'Preferencias',
+            'route'       => 'admin.preference.index',
+            'icon'        => 'fas fa-fw fa-check',
+            'active'      => ['admin/preference*']
+
+        ],
+        [
             'text'        => 'Estaciones',
             'route'       => 'admin.station.index',
             'icon'        => 'fas fa-fw fa-train',

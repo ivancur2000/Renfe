@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Preference extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+      'name',
+      'code'
+    ];
 
     public function users(){
       return $this->belongsToMany(User::class);
