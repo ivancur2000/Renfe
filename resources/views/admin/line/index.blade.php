@@ -16,11 +16,11 @@
 <section class="alert alert-success">
   Dato actualizado con exito
 </section>
+@endif
 @if(session('delete') == 'OK')
 <section class="alert alert-success">
   Dato eliminado con exito
 </section>
-@endif
 @endif
 <section class="card">
   <header class="card-header text-center">

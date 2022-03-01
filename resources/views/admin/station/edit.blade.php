@@ -70,7 +70,7 @@
       <div class="mb-0 mt-2">
           <div class="d-flex justify-content-end align-items-baseline">
               <x-jet-button>
-                  Registrar
+                Actualizar
               </x-jet-button>
           </div>
       </div>
