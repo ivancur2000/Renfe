@@ -4,20 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Line;
 use Illuminate\Http\Request;
 
-class CityControler extends Controller
+class LineController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminat
-     * e\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $cities = City::all();
-        return view('admin.city.index', compact('cities'));
+      $lines = Line::all();
+      return view('admin.line.index', compact('lines'));
     }
 
     /**
@@ -27,7 +27,8 @@ class CityControler extends Controller
      */
     public function create()
     {
-      return view('admin.city.create');
+      $cities = City::pluck('name', 'id');
+      return view('admin.line.create', compact('cities'));
     }
 
     /**
@@ -39,13 +40,14 @@ class CityControler extends Controller
     public function store(Request $request)
     {
       $request->validate([
-        'name' => 'required|unique:cities|max:150',
-        'code' => 'required'
+        'name' => 'required|unique:lines|max:150',
+        'code' => 'required',
+        'city_id' => 'required'
       ]);
 
-      City::create($request->all());
+      Line::create($request->all());
 
-      return redirect()->route('admin.city.index')->with('register', 'OK');
+      return redirect()->route('admin.line.index')->with('create', 'OK');
     }
 
     /**
@@ -65,9 +67,10 @@ class CityControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit(Line $line)
     {
-        return view('admin.city.edit', compact('city'));
+      $cities = City::pluck('name', 'id');
+      return view('admin.line.edit', compact('cities', 'line'));
     }
 
     /**
@@ -77,15 +80,17 @@ class CityControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, Line $line)
     {
       $request->validate([
         'name' => 'required|max:150',
-        'code' => 'required'
+        'code' => 'required',
+        'city_id' => 'required'
       ]);
 
-      $city->update($request->all());
-      return redirect()->route('admin.city.index')->with('edit', 'OK');
+      $line->update($request->all());
+
+      return redirect()->route('admin.line.index')->with('edit', 'OK');
     }
 
     /**
@@ -94,10 +99,9 @@ class CityControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy(Line $line)
     {
-      $city->delete();
-
-      return redirect()->route('admin.city.index')->with('delete', 'OK');
+      $line->delete();
+      return redirect()->route('admin.line.index')->with('delete', 'OK');
     }
 }
