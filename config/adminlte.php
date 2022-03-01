@@ -242,6 +242,12 @@ return [
             'icon'        => 'fas fa-fw fa-city',
             'active'      => ['admin/city*']
         ],
+        [
+            'text'        => 'Preferencias',
+            'route'       => 'admin.preference.index',
+            'icon'        => 'fas fa-fw fa-check',
+            'active'      => ['admin/preference*']
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
