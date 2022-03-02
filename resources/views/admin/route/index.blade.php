@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Preferencias')
+@section('title', 'Rutas')
 
 @section('content_header')
-    <h1 class="p-4 shadow-lg rounded-pill bg-white text-center">Preferencias</h1>
+    <h1 class="p-4 shadow-lg rounded-pill bg-white text-center">Rutas</h1>
 @stop
 
 @section('content')
-@if(session('register') == 'OK')
+@if(session('create') == 'OK')
 <section class="alert alert-success">
   Dato registrado con exito
 </section>
@@ -24,31 +24,41 @@
 @endif
 <section class="card">
   <header class="card-header text-center">
-    <a href="{{ route('admin.preference.create') }}" class="btn btn-outline-primary">
+    <a href="{{ route('admin.route.create') }}" class="btn btn-outline-primary">
       Registrar <i class="fas fa-plus"></i> 
     </a>
   </header>
   <article class="card-body">
-    <table id='preferenceTable' class="table">
+    <table id='table' class="table">
       <thead>
         <tr>
           <th>Num.</th>
           <th>Nombre</th>
           <th>Codigo</th>
+          <th>Largo</th>
+          <th>Duracion</th>
+          <th>Descripcion</th>
+          <th>Punto de partida</th>
+          <th>Destino</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        @foreach($preferences as $preference)
+        @foreach($routes as $route)
         <tr>
-          <td>{{ $preference['id'] }}</td>
-          <td>{{ $preference['name'] }}</td>
-          <td>{{ $preference['code'] }}</td>
+          <td>{{ $route->id }}</td>
+          <td>{{ $route->name }}</td>
+          <td>{{ $route->code }}</td>
+          <td>{{ $route->longer }}</td>
+          <td>{{ $route->duration }}</td>
+          <td>{{ $route->description }}</td>
+          <td>{{ $route->starting_station }}</td>
+          <td>{{ $route->ending_station }}</td>
           <td>
-            <a href="{{ route('admin.preference.edit', $preference) }}" class="btn btn-outline-success">
+            <a href="{{ route('admin.route.edit', $route) }}" class="btn btn-outline-success">
               <i class="fas fa-edit"></i>
             </a>
-            <form action="{{ route('admin.preference.destroy', $preference) }}" method="POST">
+            <form action="{{ route('admin.route.destroy', $route) }}" method="POST">
               @method('DELETE')
               @csrf
               <button class="btn btn-outline-danger">
@@ -67,7 +77,7 @@
 @section('js')
   <script> 
     $(document).ready(()=>{
-      $('#preferenceTable').DataTable({
+      $('#table').DataTable({
         responsive: true
       });
     });

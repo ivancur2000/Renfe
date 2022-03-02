@@ -9,6 +9,16 @@ class Route extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'name',
+      'code',
+      'longer',
+      'duration',
+      'description',
+      'starting_station',
+      'ending_station'
+    ];
+
     public function preferences(){
       return $this->belongsToMany(Preference::class);
     }
