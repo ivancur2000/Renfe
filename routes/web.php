@@ -28,4 +28,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
   Route::put('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
   Route::get('/route', [RouteController::class, 'index'])->name('route.index');
   Route::get('/station', [StationController::class, 'index'])->name('station.index');
+  Route::get('/wheather', function(){
+      return view('wheather');
+  })->name('wheather');
 });
