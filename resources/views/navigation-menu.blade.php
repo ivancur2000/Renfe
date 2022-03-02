@@ -20,6 +20,11 @@
       'name' => 'Estaciones',
       'route' => route('station.index'),
       'active' => request()->routeIs('station.index')
+    ],
+    [
+      'name' => 'Reporte del clima',
+      'route' => route('wheather'),
+      'active' => request()->routeIs('wheather')
     ]
   ]
 @endphp
