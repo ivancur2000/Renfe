@@ -5,6 +5,11 @@
       'name' => 'Dashboard',
       'route' => route('dashboard'),
       'active' => request()->routeIs('dashboard')
+    ],
+    [
+      'name' => 'Preferencias de usuario',
+      'route' => route('user.edit'),
+      'active' => request()->routeIs('user.edit')
     ]
   ]
 @endphp
