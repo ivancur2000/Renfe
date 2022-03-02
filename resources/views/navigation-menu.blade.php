@@ -10,6 +10,16 @@
       'name' => 'Preferencias de usuario',
       'route' => route('user.edit'),
       'active' => request()->routeIs('user.edit')
+    ],
+    [
+      'name' => 'Rutas',
+      'route' => route('route.index'),
+      'active' => request()->routeIs('route.index')
+    ],
+    [
+      'name' => 'Estaciones',
+      'route' => route('station.index'),
+      'active' => request()->routeIs('station.index')
     ]
   ]
 @endphp
